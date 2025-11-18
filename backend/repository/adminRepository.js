@@ -1,6 +1,5 @@
-import { db } from "../routes/db.js";
+import { db } from "../services/db.js";
 
-// Buscar por email
 export async function buscarPorEmail(email) {
     const [rows] = await db.query(
         "SELECT * FROM admins WHERE email = ?",
@@ -9,7 +8,6 @@ export async function buscarPorEmail(email) {
     return rows[0];
 }
 
-// Criar admin
 export async function criarAdmin(nome, email, senhaHash) {
     const [result] = await db.query(
         "INSERT INTO admins (nome, email, senha) VALUES (?, ?, ?)",
